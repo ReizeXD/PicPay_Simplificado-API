@@ -2,11 +2,11 @@ package com.picpay.simplificado.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
-import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.picpay.simplificado.entity.User;
+import com.picpay.simplificado.entity.Wallet;
 import com.picpay.simplificado.repository.UserRepository;
 
 import jakarta.transaction.Transactional;
@@ -27,6 +27,10 @@ public class UserService {
             user.setIsMerchant(false);
         }
         
+        Wallet wallet = new Wallet();
+        wallet.setUser(user);
+        user.setWallet(wallet);
+
         try {
             return userRepository.save(user);
         } catch (DataIntegrityViolationException e) {
