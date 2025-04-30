@@ -19,6 +19,7 @@ import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.*;
 import lombok.Data;
+import lombok.ToString;
 
 @Data
 @Entity
@@ -48,7 +49,7 @@ public class User {
     private String password;
 
     @Column(name = "is_merchant", nullable = false)
-    private Boolean isMerchant = false;
+    private Boolean isMerchant;
 
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "wallet_id",referencedColumnName = "id")
@@ -56,9 +57,11 @@ public class User {
 
     @OneToMany(mappedBy = "sender")
     @JsonIgnore
+    @ToString.Exclude
     private List<Transacao> sendTransactions = new ArrayList<>();
     @OneToMany(mappedBy = "recipient")
     @JsonIgnore
+    @ToString.Exclude
     private List<Transacao> receiveTransactions = new ArrayList<>();
 
 }

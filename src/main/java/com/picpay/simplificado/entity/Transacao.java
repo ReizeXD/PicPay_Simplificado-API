@@ -13,8 +13,8 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.validation.constraints.DecimalMin;
-import jakarta.validation.constraints.NotNull;
 import lombok.Data;
+import lombok.ToString;
 
 
 @Data
@@ -31,14 +31,15 @@ public class Transacao {
     
     @CreationTimestamp 
     @Column(name = "time", updatable = false)
-    @NotNull(message = "A data não pode ser nulo")
     private LocalDateTime time;
 
     @ManyToOne
     @JoinColumn(name="sender_id")
+    @ToString.Exclude
     private User sender;
     
     @ManyToOne
     @JoinColumn(name="recipient_id")
+    @ToString.Exclude
     private User recipient;
 }

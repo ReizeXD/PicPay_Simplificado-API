@@ -12,6 +12,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.OneToOne;
 import jakarta.validation.constraints.DecimalMin;
 import lombok.Data;
+import lombok.ToString;
 
 @Data
 @Entity
@@ -27,6 +28,7 @@ public class Wallet {
 
     @OneToOne(mappedBy = "wallet")
     @JsonIgnore
+    @ToString.Exclude
     private User user;    
     
 }
