@@ -5,9 +5,8 @@ import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import com.picpay.simplificado.dto.UserRequestDTO;
-import com.picpay.simplificado.dto.UserResponseDTO;
-import com.picpay.simplificado.dto.UserUpdateDTO;
+import com.picpay.simplificado.dto.user.UserRequestDTO;
+import com.picpay.simplificado.dto.user.UserUpdateDTO;
 import com.picpay.simplificado.entity.User;
 import com.picpay.simplificado.entity.Wallet;
 import com.picpay.simplificado.repository.UserRepository;

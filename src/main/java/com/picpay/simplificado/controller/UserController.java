@@ -7,10 +7,10 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.picpay.simplificado.dto.UserRequestDTO;
-import com.picpay.simplificado.dto.UserResponseDTO;
-import com.picpay.simplificado.dto.UserUpdateDTO;
-import com.picpay.simplificado.dto.mapper.UserMapper;
+import com.picpay.simplificado.dto.mapper.Mapper;
+import com.picpay.simplificado.dto.user.UserRequestDTO;
+import com.picpay.simplificado.dto.user.UserResponseDTO;
+import com.picpay.simplificado.dto.user.UserUpdateDTO;
 import com.picpay.simplificado.entity.User;
 import com.picpay.simplificado.service.UserService;
 
@@ -30,7 +30,7 @@ public class UserController {
     public ResponseEntity<?> save(@RequestBody @Valid UserRequestDTO userRequestDTO){
         try {
             User newUser=this.userService.save(userRequestDTO);
-            UserResponseDTO userResponseDTO = UserMapper.toDto(newUser);
+            UserResponseDTO userResponseDTO = Mapper.toUserDto(newUser);
             return ResponseEntity.status(201).body(userResponseDTO);
         } catch (Exception e) {
             return ResponseEntity.badRequest().body(e.getMessage());
@@ -41,7 +41,7 @@ public class UserController {
     public ResponseEntity<?> update(@PathVariable Long id, @RequestBody UserUpdateDTO userUpdateDTO) {
         try {
             User updateUser=this.userService.update(id, userUpdateDTO);
-            UserResponseDTO userResponseDTO = UserMapper.toDto(updateUser);
+            UserResponseDTO userResponseDTO = Mapper.toUserDto(updateUser);
             return ResponseEntity.status(201).body(userResponseDTO); 
         } catch (Exception e) {
             return ResponseEntity.badRequest().body(e.getMessage());

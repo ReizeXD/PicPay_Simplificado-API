@@ -1,4 +1,4 @@
-package com.picpay.simplificado.dto;
+package com.picpay.simplificado.dto.user;
 
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;

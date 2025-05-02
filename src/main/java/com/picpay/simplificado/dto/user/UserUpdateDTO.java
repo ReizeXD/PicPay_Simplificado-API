@@ -1,4 +1,4 @@
-package com.picpay.simplificado.dto;
+package com.picpay.simplificado.dto.user;
 
 import lombok.Data;
 

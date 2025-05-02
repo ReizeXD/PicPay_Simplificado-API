@@ -3,6 +3,9 @@ package com.picpay.simplificado.controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.picpay.simplificado.dto.mapper.Mapper;
+import com.picpay.simplificado.dto.transacao.TransacaoRequestDTO;
+import com.picpay.simplificado.dto.transacao.TransacaoResponseDTO;
 import com.picpay.simplificado.entity.Transacao;
 import com.picpay.simplificado.service.TransacaoService;
 
@@ -22,10 +25,11 @@ public class TransacaoController {
     TransacaoService transacaoService;
 
     @PostMapping
-    public ResponseEntity<?> transfer(@RequestBody @Valid Transacao transacao) {
+    public ResponseEntity<?> transfer(@RequestBody @Valid TransacaoRequestDTO transacaoRequestDTO) {
         try {
-            Transacao newTransacao = transacaoService.transferir(transacao);
-            return ResponseEntity.ok("Transação realizada com sucesso" + newTransacao);
+            Transacao newTransacao = transacaoService.transferir(transacaoRequestDTO);
+            TransacaoResponseDTO transacaoResponseDTO = Mapper.toTransacaoDto(newTransacao);
+            return ResponseEntity.ok("Transação realizada com sucesso" + transacaoResponseDTO);
         } catch (RuntimeException e) {
             return ResponseEntity.badRequest().body(e.getMessage());
         }
